@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="ALNWOKS Solutions Limited - Transforming Business Through Technology. Comprehensive IT solutions for government and commercial sectors with innovative products like eazyBDC, Flow AI, Ottomate, and Datatloop.">
+    <meta name="keywords"
+        content="IT solutions, technology consulting, digital transformation, enterprise software, government technology, eazyBDC, Flow AI, Ottomate, Datatloop">
+    <meta name="author" content="ALNWOKS Solutions Limited">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="ALNWOKS Solutions Limited - Transforming Business Through Technology">
+    <meta property="og:description"
+        content="Comprehensive IT solutions for government and commercial sectors with innovative products and strategic partnerships.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alnwoks.com">
+    <meta property="og:image" content="https://alnwoks.com/assets/images/og-image.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ALNWOKS Solutions Limited">
+    <meta name="twitter:description" content="Transforming Business Through Technology">
+    <meta name="twitter:image" content="https://alnwoks.com/assets/images/twitter-card.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="./src/css/main.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ALNWOKS Solutions Limited",
+        "alternateName": "ALNWOKS",
+        "url": "https://alnwoks.com",
+        "logo": "https://alnwoks.com/assets/images/logo.png",
+        "description": "Technology solutions provider specializing in government and commercial sectors",
+        "foundingDate": "2024",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "Nigeria"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+234-XXX-XXX-XXXX",
+            "contactType": "customer service",
+            "availableLanguage": ["English"]
+        },
+        "sameAs": [
+            "https://linkedin.com/company/alnwoks",
+            "https://twitter.com/alnwoks"
+        ]
+    }
+    </script>
+
+    <title>ALNWOKS Solutions Limited - Transforming Business Through Technology</title>
+</head>
+
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100"
+        x-data="navigation()">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="#home" class="flex items-center space-x-3">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">A</span>
+                        </div>
+                        <div class="hidden sm:block">
+                            <div class="text-xl font-bold text-gray-900">ALNWOKS</div>
+                            <div class="text-xs text-gray-600">Solutions Limited</div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#about"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">About</a>
+                    <a href="#solutions"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">Solutions</a>
+                    <a href="#products"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">Products</a>
+                    <a href="#case-studies"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">Case
+                        Studies</a>
+                    <a href="#partnerships"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">Partnerships</a>
+                    <a href="#insights"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">Insights</a>
+                    <a href="#contact"
+                        class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">Contact
+                        Us</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button @click="toggleMenu()" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path x-show="!isOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path x-show="isOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div x-show="isOpen" x-transition class="lg:hidden py-4 border-t border-gray-100">
+                <div class="flex flex-col space-y-4">
+                    <a href="#about" @click="closeMenu()"
+                        class="text-gray-600 hover:text-blue-600 font-medium">About</a>
+                    <a href="#solutions" @click="closeMenu()"
+                        class="text-gray-600 hover:text-blue-600 font-medium">Solutions</a>
+                    <a href="#products" @click="closeMenu()"
+                        class="text-gray-600 hover:text-blue-600 font-medium">Products</a>
+                    <a href="#case-studies" @click="closeMenu()"
+                        class="text-gray-600 hover:text-blue-600 font-medium">Case Studies</a>
+                    <a href="#partnerships" @click="closeMenu()"
+                        class="text-gray-600 hover:text-blue-600 font-medium">Partnerships</a>
+                    <a href="#insights" @click="closeMenu()"
+                        class="text-gray-600 hover:text-blue-600 font-medium">Insights</a>
+                    <a href="#contact" @click="closeMenu()"
+                        class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 text-center">Contact
+                        Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home"
+        class="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white overflow-hidden pt-20 py-24">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <div class="max-w-4xl mx-auto">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                        Transforming Business Through <span
+                            class="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Technology</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
+                        Comprehensive IT solutions that drive innovation, efficiency, and growth across government and
+                        commercial sectors
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#solutions"
+                            class="bg-green-600 text-white px-8 py-4 rounded-lg hover:bg-green-700 transition-colors duration-200 text-lg font-medium">Explore
+                            Solutions</a>
+                        <a href="#products"
+                            class="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-blue-600 transition-colors duration-200 text-lg font-medium">View
+                            Products</a>
+                    </div>
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-80">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-white">200%</div>
+                        <div class="text-blue-200 text-sm">Revenue Growth Target</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-white">50+</div>
+                        <div class="text-blue-200 text-sm">Strategic Partnerships</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-white">$10M+</div>
+                        <div class="text-blue-200 text-sm">Pipeline Value</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-white">90%</div>
+                        <div class="text-blue-200 text-sm">Customer Retention</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Leading Technology Innovation</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    ALNWOKS Solutions Limited is structured as a comprehensive technology solutions provider with
+                    specialized divisions for government and commercial sectors, backed by innovative product offerings.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Our Strategic Approach</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Dual-Market Expertise</h4>
+                                <p class="text-gray-600">Unique combination of government and commercial experience with
+                                    cross-sector knowledge transfer.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Innovation Leadership</h4>
+                                <p class="text-gray-600">Cutting-edge AI, automation, and cloud technologies with
+                                    continuous R&D investment.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Partnership-First Approach</h4>
+                                <p class="text-gray-600">Collaborative growth model with strategic alliances and joint
+                                    venture capabilities.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl p-8">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-blue-600 mb-2">18</div>
+                                <div class="text-gray-600 text-sm">Month Roadmap</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-green-600 mb-2">4</div>
+                                <div class="text-gray-600 text-sm">Product Lines</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-orange-600 mb-2">2</div>
+                                <div class="text-gray-600 text-sm">Market Divisions</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-gray-600 mb-2">15</div>
+                                <div class="text-gray-600 text-sm">Team Members</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Comprehensive Solutions</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Specialized divisions delivering targeted solutions for government and commercial sectors with deep
+                    industry expertise.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Government Solutions -->
+                <div
+                    class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="p-8">
+                        <div class="flex items-center mb-6">
+                            <div
+                                class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Government Solutions</h3>
+                                <p class="text-blue-600 font-medium">Secure. Compliant. Innovative.</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            Technology solutions that enhance public service delivery while ensuring security and
+                            regulatory compliance for government agencies.
+                        </p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Security clearance management
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Regulatory compliance automation
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Mission-critical system development
+                            </li>
+                        </ul>
+                        <a href="#contact"
+                            class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 inline-block">Learn
+                            More</a>
+                    </div>
+                </div>
+
+                <!-- Commercial Solutions -->
+                <div
+                    class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="p-8">
+                        <div class="flex items-center mb-6">
+                            <div
+                                class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Commercial Solutions</h3>
+                                <p class="text-green-600 font-medium">Accelerating Business Success</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            Agile technology solutions that drive digital transformation and competitive advantage for
+                            enterprise organizations.
+                        </p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Enterprise software development
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Digital transformation consulting
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Cloud migration and optimization
+                            </li>
+                        </ul>
+                        <a href="#contact"
+                            class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 inline-block">Learn
+                            More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 bg-white" x-data="productShowcase()">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Innovative Product Portfolio</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Cutting-edge products that solve real business challenges across industries with measurable results
+                    and seamless integration.
+                </p>
+            </div>
+
+            <!-- Product Navigation -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button @click="setActiveProduct('eazybdc')"
+                    :class="activeProduct === 'eazybdc' ? 'bg-blue-600 text-white' : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'"
+                    class="px-6 py-3 rounded-lg font-medium transition-colors duration-200">eazyBDC</button>
+                <button @click="setActiveProduct('flowai')"
+                    :class="activeProduct === 'flowai' ? 'bg-blue-600 text-white' : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'"
+                    class="px-6 py-3 rounded-lg font-medium transition-colors duration-200">Flow AI</button>
+                <button @click="setActiveProduct('ottomate')"
+                    :class="activeProduct === 'ottomate' ? 'bg-blue-600 text-white' : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'"
+                    class="px-6 py-3 rounded-lg font-medium transition-colors duration-200">Ottomate</button>
+                <button @click="setActiveProduct('datatloop')"
+                    :class="activeProduct === 'datatloop' ? 'bg-blue-600 text-white' : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'"
+                    class="px-6 py-3 rounded-lg font-medium transition-colors duration-200">Datatloop</button>
+            </div>
+
+            <!-- Product Showcase -->
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+                    <div class="p-8">
+                        <div class="grid lg:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <div class="flex items-center mb-4">
+                                    <h3 x-text="getActiveProduct().name" class="text-3xl font-bold text-gray-900 mr-4">
+                                    </h3>
+                                    <span x-text="getActiveProduct().tagline" class="text-gray-600"></span>
+                                </div>
+                                <p x-text="getActiveProduct().description" class="text-gray-600 mb-6"></p>
+
+                                <div class="mb-6">
+                                    <h4 class="font-semibold text-gray-900 mb-3">Key Features:</h4>
+                                    <ul class="space-y-2">
+                                        <template x-for="feature in getActiveProduct().features" :key="feature">
+                                            <li class="flex items-center text-gray-600">
+                                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="none"
+                                                    stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                </svg>
+                                                <span x-text="feature"></span>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+
+                                <div class="flex gap-4">
+                                    <a :href="getActiveProduct().link" target="_blank"
+                                        class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200">Visit
+                                        Product Site</a>
+                                    <a href="#contact"
+                                        class="border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-600 hover:text-white transition-colors duration-200">Request
+                                        Demo</a>
+                                </div>
+                            </div>
+
+                            <div class="relative">
+                                <div :class="'bg-gradient-to-br ' + getActiveProduct().color"
+                                    class="rounded-xl p-8 text-white">
+                                    <div class="text-center">
+                                        <div
+                                            class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <span x-text="getActiveProduct().name.charAt(0)"
+                                                class="text-3xl font-bold"></span>
+                                        </div>
+                                        <h4 x-text="getActiveProduct().name" class="text-2xl font-bold mb-2"></h4>
+                                        <p x-text="getActiveProduct().tagline" class="opacity-90"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="case-studies" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Success Stories</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Real-world results from our comprehensive technology solutions across government and commercial
+                    sectors.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Case Study 1 -->
+                <div
+                    class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-blue-100 text-

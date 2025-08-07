@@ -1,0 +1,352 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/* Custom Base Styles */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply font-body text-neutral-700 leading-relaxed;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-heading font-semibold text-neutral-900;
+    }
+
+    h1 {
+        @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+    }
+
+    h2 {
+        @apply text-3xl md:text-4xl lg:text-5xl leading-tight;
+    }
+
+    h3 {
+        @apply text-2xl md:text-3xl lg:text-4xl leading-snug;
+    }
+
+    h4 {
+        @apply text-xl md:text-2xl lg:text-3xl leading-snug;
+    }
+
+    h5 {
+        @apply text-lg md:text-xl lg:text-2xl leading-snug;
+    }
+
+    h6 {
+        @apply text-base md:text-lg lg:text-xl leading-snug;
+    }
+
+    p {
+        @apply text-base md:text-lg leading-relaxed mb-4;
+    }
+
+    a {
+        @apply transition-colors duration-200;
+    }
+
+    button {
+        @apply transition-all duration-200;
+    }
+}
+
+/* Custom Component Styles */
+@layer components {
+
+    /* Navigation Styles */
+    .nav-link {
+        @apply text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200 relative;
+    }
+
+    .nav-link.active {
+        @apply text-primary-600;
+    }
+
+    .nav-link::after {
+        @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200;
+        content: '';
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        @apply w-full;
+    }
+
+    /* Button Styles */
+    .btn {
+        @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    }
+
+    .btn-primary {
+        @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-md hover:shadow-lg;
+    }
+
+    .btn-secondary {
+        @apply bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500 shadow-md hover:shadow-lg;
+    }
+
+    .btn-outline {
+        @apply border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white focus:ring-primary-500;
+    }
+
+    .btn-ghost {
+        @apply text-primary-600 hover:bg-primary-50 focus:ring-primary-500;
+    }
+
+    .btn-lg {
+        @apply px-8 py-4 text-lg;
+    }
+
+    .btn-sm {
+        @apply px-4 py-2 text-sm;
+    }
+
+    /* Card Styles */
+    .card {
+        @apply bg-white rounded-xl shadow-soft border border-neutral-100 overflow-hidden;
+    }
+
+    .card-hover {
+        @apply hover:shadow-medium hover:-translate-y-1 transition-all duration-300;
+    }
+
+    .card-body {
+        @apply p-6;
+    }
+
+    .card-header {
+        @apply px-6 py-4 border-b border-neutral-100;
+    }
+
+    .card-footer {
+        @apply px-6 py-4 border-t border-neutral-100 bg-neutral-50;
+    }
+
+    /* Form Styles */
+    .form-input {
+        @apply w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200;
+    }
+
+    .form-textarea {
+        @apply w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200 resize-vertical;
+    }
+
+    .form-select {
+        @apply w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200;
+    }
+
+    .form-label {
+        @apply block text-sm font-medium text-neutral-700 mb-2;
+    }
+
+    .form-error {
+        @apply text-red-600 text-sm mt-1;
+    }
+
+    /* Section Styles */
+    .section {
+        @apply py-16 md:py-20 lg:py-24;
+    }
+
+    .section-sm {
+        @apply py-12 md:py-16 lg:py-20;
+    }
+
+    .section-lg {
+        @apply py-20 md:py-24 lg:py-32;
+    }
+
+    .container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    .container-sm {
+        @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    .container-xs {
+        @apply max-w-2xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    /* Hero Section */
+    .hero {
+        @apply relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white overflow-hidden;
+    }
+
+    .hero::before {
+        @apply absolute inset-0 bg-hero-pattern opacity-10;
+        content: '';
+    }
+
+    .hero-content {
+        @apply relative z-10;
+    }
+
+    /* Feature Grid */
+    .feature-grid {
+        @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+    }
+
+    .feature-card {
+        @apply text-center p-6;
+    }
+
+    .feature-icon {
+        @apply w-16 h-16 mx-auto mb-4 p-4 bg-primary-100 text-primary-600 rounded-full;
+    }
+
+    /* Stats Section */
+    .stats-grid {
+        @apply grid grid-cols-2 md:grid-cols-4 gap-8;
+    }
+
+    .stat-item {
+        @apply text-center;
+    }
+
+    .stat-number {
+        @apply text-3xl md:text-4xl font-bold text-primary-600 mb-2;
+    }
+
+    .stat-label {
+        @apply text-neutral-600 font-medium;
+    }
+
+    /* Testimonial Styles */
+    .testimonial {
+        @apply bg-white p-8 rounded-xl shadow-soft;
+    }
+
+    .testimonial-quote {
+        @apply text-lg text-neutral-700 mb-6 italic;
+    }
+
+    .testimonial-author {
+        @apply flex items-center;
+    }
+
+    .testimonial-avatar {
+        @apply w-12 h-12 rounded-full mr-4;
+    }
+
+    .testimonial-name {
+        @apply font-semibold text-neutral-900;
+    }
+
+    .testimonial-title {
+        @apply text-neutral-600 text-sm;
+    }
+
+    /* CTA Section */
+    .cta-section {
+        @apply bg-gradient-to-r from-primary-600 to-secondary-600 text-white;
+    }
+
+    /* Footer Styles */
+    .footer {
+        @apply bg-neutral-900 text-neutral-300;
+    }
+
+    .footer-link {
+        @apply hover:text-white transition-colors duration-200;
+    }
+
+    /* Loading Spinner */
+    .spinner {
+        @apply animate-spin rounded-full border-4 border-neutral-200 border-t-primary-600;
+    }
+
+    /* Animations */
+    .fade-in {
+        @apply animate-fade-in;
+    }
+
+    .slide-up {
+        @apply animate-slide-up;
+    }
+
+    .slide-down {
+        @apply animate-slide-down;
+    }
+
+    .scale-in {
+        @apply animate-scale-in;
+    }
+}
+
+/* Custom Utility Classes */
+@layer utilities {
+    .text-gradient {
+        @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+    }
+
+    .bg-pattern {
+        background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="4"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .glass {
+        @apply bg-white/10 backdrop-blur-md border border-white/20;
+    }
+
+    .glass-dark {
+        @apply bg-black/10 backdrop-blur-md border border-black/20;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    .print-only {
+        display: block !important;
+    }
+}
+
+/* Dark Mode Support (Future Enhancement) */
+@media (prefers-color-scheme: dark) {
+    .dark-mode {
+        @apply bg-neutral-900 text-neutral-100;
+    }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .btn-primary {
+        @apply border-2 border-white;
+    }
+
+    .nav-link {
+        @apply border-b border-transparent hover:border-current;
+    }
+}

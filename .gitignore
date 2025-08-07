@@ -1,0 +1,38 @@
+# Ignore context directory
+context/
+
+# Ignore all documentation files except root README.md
+*.md
+!README.md
+
+# Ignore documentation in subfolders
+**/documentation.md
+**/design_doc_beacon.md
+**/mvp_prompt.md
+**/API.md
+
+# Existing ignores
+# ...existing code...
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+
+# Dotenv (single source of truth)
+.env
+frontend/.env
+frontend/.env.local
+frontend/.env.development
+frontend/.env.production
+frontend/.env.test
+
+# Node
+node_modules/
+dist/
+
+# Mac
+.DS_Store
+
+# Zipped files
+*.gz
