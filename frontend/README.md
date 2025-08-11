@@ -20,7 +20,9 @@ A modern, professional website for ALNWOKS Solutions Limited built with cutting-
 - **AOS**: Animate On Scroll library for smooth animations
 - **PostCSS**: CSS processing with autoprefixer
 - **Webpack**: Module bundler for JavaScript
-- **Live Server**: Development server with hot reload
+- **Express.js**: Development server with hot reload
+- **Nginx**: Production web server with performance optimizations
+- **Docker**: Containerization for consistent deployment
 
 ## 📁 Project Structure
 
@@ -34,11 +36,13 @@ frontend/
 ├── dist/                     # Built assets (generated)
 ├── assets/                   # Static assets (images, icons, etc.)
 ├── index.html               # Main website file
-├── complete_website.html    # Complete website with all sections
 ├── package.json             # Node.js dependencies and scripts
 ├── tailwind.config.js       # Tailwind CSS configuration
 ├── postcss.config.js        # PostCSS configuration
 ├── webpack.config.js        # Webpack configuration
+├── server.js                # Express development server
+├── nginx.conf               # Nginx production configuration
+├── Dockerfile               # Docker image definition
 └── README.md               # This file
 ```
 
@@ -67,7 +71,9 @@ frontend/
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (v14 or higher)
+- Node.js (v18 or higher)
+- Docker (v20.10 or higher)
+- Docker Compose (v2.0 or higher)
 - npm or yarn
 
 ### Installation
@@ -102,6 +108,28 @@ frontend/
 - `npm run watch` - Watch for changes and rebuild automatically
 - `npm run lint` - Lint JavaScript files
 - `npm run format` - Format code with Prettier
+- `npm run audit` - Audit dependencies for security vulnerabilities
+
+## 🐳 Docker Deployment
+
+The frontend can be containerized using Docker for consistent deployment across environments:
+
+```bash
+# Build the Docker image
+docker build -t alnwoks-frontend .
+
+# Run the container
+docker run -p 3001:80 alnwoks-frontend
+```
+
+Or using Docker Compose:
+```bash
+# Start services
+docker-compose -f ../docker-compose.frontend.yml up -d
+
+# Stop services
+docker-compose -f ../docker-compose.frontend.yml down
+```
 
 ## 📱 Responsive Design
 
@@ -225,6 +253,29 @@ Ready for integration with:
 - Custom analytics solutions
 
 ## 🚀 Deployment
+
+### Development
+For local development, use the unified deployment script:
+```bash
+# Start development server
+../scripts/deploy-frontend.sh dev
+
+# Build assets
+../scripts/deploy-frontend.sh build
+
+# Start container
+../scripts/deploy-frontend.sh start
+
+# Stop container
+../scripts/deploy-frontend.sh stop
+```
+
+### Production
+For production deployment, use the remote deployment script:
+```bash
+# Deploy to remote server
+../scripts/deploy-frontend.sh deploy
+```
 
 ### Static Hosting
 The website can be deployed to any static hosting service:
