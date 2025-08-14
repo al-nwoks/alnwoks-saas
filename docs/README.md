@@ -285,6 +285,17 @@ All strategic documents are organized in the `/docs` directory:
 - [`implementation_roadmap.md`](./implementation_roadmap.md) - Phased execution plan
 - [`measurement_optimization_framework.md`](./measurement_optimization_framework.md) - Performance measurement and improvement
 
+### Technical Documentation
+
+Frontend technical documentation:
+- [`frontend/README.md`](../frontend/README.md) - Frontend project overview and setup
+- [`development_workflow.md`](./development_workflow.md) - Development process and best practices
+- [`build_process.md`](./build_process.md) - Build system and optimization
+- [`container_orchestration.md`](./container_orchestration.md) - Docker and deployment configuration
+- [`styling_system.md`](./styling_system.md) - CSS architecture and design system
+- [`frontend_deployment_guide.md`](./frontend_deployment_guide.md) - Frontend deployment procedures
+- [`remote_deployment_guide.md`](./remote_deployment_guide.md) - Remote server deployment
+
 ### Additional Resources
 
 **Context Documents** (in `/context` directory):

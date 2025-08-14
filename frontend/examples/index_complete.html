@@ -26,171 +26,60 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            200: '#bfdbfe',
-                            300: '#93c5fd',
-                            400: '#60a5fa',
-                            500: '#3b82f6',
-                            600: '#1E3A8A',
-                            700: '#1d4ed8',
-                            800: '#1e40af',
-                            900: '#1e3a8a',
-                        },
-                        secondary: {
-                            50: '#ecfdf5',
-                            100: '#d1fae5',
-                            200: '#a7f3d0',
-                            300: '#6ee7b7',
-                            400: '#34d399',
-                            500: '#059669',
-                            600: '#047857',
-                            700: '#065f46',
-                            800: '#064e3b',
-                            900: '#022c22',
-                        },
-                        accent: {
-                            50: '#fff7ed',
-                            100: '#ffedd5',
-                            200: '#fed7aa',
-                            300: '#fdba74',
-                            400: '#fb923c',
-                            500: '#EA580C',
-                            600: '#dc2626',
-                            700: '#b91c1c',
-                            800: '#991b1b',
-                            900: '#7f1d1d',
-                        }
-                    }
-                }
-            }
-        }
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="./src/css/main.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ALNWOKS Solutions Limited",
+        "alternateName": "ALNWOKS",
+        "url": "https://alnwoks.com",
+        "logo": "https://alnwoks.com/assets/images/logo.png",
+        "description": "Technology solutions provider specializing in government and commercial sectors",
+        "foundingDate": "2024",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "Nigeria"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+234-XXX-XXX-XXXX",
+            "contactType": "customer service",
+            "availableLanguage": ["English"]
+        },
+        "sameAs": [
+            "https://linkedin.com/company/alnwoks",
+            "https://twitter.com/alnwoks"
+        ]
+    }
     </script>
-
-    <!-- Alpine.js -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <title>ALNWOKS Solutions Limited - Transforming Business Through Technology</title>
 </head>
 
-<body class="antialiased" x-data="{
-    isMenuOpen: false,
-    activeProduct: 'eazybdc',
-    products: {
-        eazybdc: {
-            name: 'eazyBDC',
-            tagline: 'Bureau de Change Management',
-            description: 'Streamline your Bureau de Change operations with automated compliance, real-time reporting, and intelligent workflow management.',
-            features: ['Automated Compliance', 'Real-time Reporting', 'Customer Management', 'Rate Management'],
-            link: 'https://eazybdc.com',
-            color: 'from-blue-600 to-yellow-500'
-        },
-        flowai: {
-            name: 'Flow AI',
-            tagline: 'Enterprise Conversational AI',
-            description: 'Build intelligent chatbots with advanced RAG infrastructure, seamless integrations, and enterprise-grade security.',
-            features: ['RAG Infrastructure', 'Developer APIs', 'Enterprise Security', 'Custom Integration'],
-            link: 'https://flowai.com',
-            color: 'from-blue-600 to-purple-600'
-        },
-        ottomate: {
-            name: 'Ottomate',
-            tagline: 'No-Code Workflow Automation',
-            description: 'Empower your team to create powerful workflow automations without coding, driving efficiency across your organization.',
-            features: ['Visual Designer', 'Pre-built Templates', 'Team Collaboration', 'Analytics Dashboard'],
-            link: 'https://ottomate.com',
-            color: 'from-green-600 to-blue-600'
-        },
-        datatloop: {
-            name: 'Datatloop',
-            tagline: 'Data Orchestration Platform',
-            description: 'Revolutionary data synthesis platform that transforms how enterprises discover insights from complex data ecosystems.',
-            features: ['Data Synthesis', 'Intelligent Orchestration', 'Enterprise Scale', 'Advanced Analytics'],
-            link: 'https://datatloop.com',
-            color: 'from-orange-600 to-blue-600'
-        }
-    },
-    contactForm: {
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        message: '',
-        interest: ''
-    },
-    isSubmitting: false,
-    isSubmitted: false,
-    errors: {},
-    
-    toggleMenu() {
-        this.isMenuOpen = !this.isMenuOpen;
-    },
-    
-    closeMenu() {
-        this.isMenuOpen = false;
-    },
-    
-    setActiveProduct(productId) {
-        this.activeProduct = productId;
-    },
-    
-    getActiveProduct() {
-        return this.products[this.activeProduct];
-    },
-    
-    async submitContactForm() {
-        this.isSubmitting = true;
-        this.errors = {};
-        
-        if (!this.contactForm.name.trim()) {
-            this.errors.name = 'Name is required';
-        }
-        if (!this.contactForm.email.trim()) {
-            this.errors.email = 'Email is required';
-        }
-        if (!this.contactForm.message.trim()) {
-            this.errors.message = 'Message is required';
-        }
-        
-        if (Object.keys(this.errors).length > 0) {
-            this.isSubmitting = false;
-            return;
-        }
-        
-        try {
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            this.isSubmitted = true;
-            this.contactForm = { name: '', email: '', company: '', phone: '', message: '', interest: '' };
-        } catch (error) {
-            this.errors.general = 'There was an error submitting your form. Please try again.';
-        } finally {
-            this.isSubmitting = false;
-        }
-    }
-}" x-init="AOS.init()">
-
+<body class="antialiased">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100"
+        x-data="navigation()">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 md:h-20">
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="#home" class="flex items-center space-x-3">
                         <div
-                            class="w-10 h-10 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center">
+                            class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
                             <span class="text-white font-bold text-xl">A</span>
                         </div>
                         <div class="hidden sm:block">
@@ -203,47 +92,51 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-8">
                     <a href="#about"
-                        class="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200">About</a>
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">About</a>
                     <a href="#solutions"
-                        class="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200">Solutions</a>
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">Solutions</a>
                     <a href="#products"
-                        class="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200">Products</a>
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">Products</a>
                     <a href="#case-studies"
-                        class="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200">Case
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">Case
                         Studies</a>
                     <a href="#partnerships"
-                        class="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200">Partnerships</a>
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">Partnerships</a>
+                    <a href="#insights"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">Insights</a>
                     <a href="#contact"
-                        class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors duration-200">Contact
+                        class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">Contact
                         Us</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <button @click="toggleMenu()" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path x-show="!isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        <path x-show="!isOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16"></path>
-                        <path x-show="isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        <path x-show="isOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
 
             <!-- Mobile Navigation -->
-            <div x-show="isMenuOpen" x-transition class="lg:hidden py-4 border-t border-gray-100">
+            <div x-show="isOpen" x-transition class="lg:hidden py-4 border-t border-gray-100">
                 <div class="flex flex-col space-y-4">
                     <a href="#about" @click="closeMenu()"
-                        class="text-gray-600 hover:text-primary-600 font-medium">About</a>
+                        class="text-gray-600 hover:text-blue-600 font-medium">About</a>
                     <a href="#solutions" @click="closeMenu()"
-                        class="text-gray-600 hover:text-primary-600 font-medium">Solutions</a>
+                        class="text-gray-600 hover:text-blue-600 font-medium">Solutions</a>
                     <a href="#products" @click="closeMenu()"
-                        class="text-gray-600 hover:text-primary-600 font-medium">Products</a>
+                        class="text-gray-600 hover:text-blue-600 font-medium">Products</a>
                     <a href="#case-studies" @click="closeMenu()"
-                        class="text-gray-600 hover:text-primary-600 font-medium">Case Studies</a>
+                        class="text-gray-600 hover:text-blue-600 font-medium">Case Studies</a>
                     <a href="#partnerships" @click="closeMenu()"
-                        class="text-gray-600 hover:text-primary-600 font-medium">Partnerships</a>
+                        class="text-gray-600 hover:text-blue-600 font-medium">Partnerships</a>
+                    <a href="#insights" @click="closeMenu()"
+                        class="text-gray-600 hover:text-blue-600 font-medium">Insights</a>
                     <a href="#contact" @click="closeMenu()"
-                        class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors duration-200 text-center">Contact
+                        class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 text-center">Contact
                         Us</a>
                 </div>
             </div>
@@ -252,33 +145,31 @@
 
     <!-- Hero Section -->
     <section id="home"
-        class="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white overflow-hidden pt-20 py-24">
+        class="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white overflow-hidden pt-20 py-24">
         <div class="absolute inset-0 bg-black opacity-10"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center">
                 <div class="max-w-4xl mx-auto">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" data-aos="fade-up">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                         Transforming Business Through <span
-                            class="bg-gradient-to-r from-secondary-400 to-accent-400 bg-clip-text text-transparent">Technology</span>
+                            class="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Technology</span>
                     </h1>
-                    <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed" data-aos="fade-up"
-                        data-aos-delay="200">
+                    <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
                         Comprehensive IT solutions that drive innovation, efficiency, and growth across government and
                         commercial sectors
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
                         <a href="#solutions"
-                            class="bg-secondary-600 text-white px-8 py-4 rounded-lg hover:bg-secondary-700 transition-colors duration-200 text-lg font-medium">Explore
+                            class="bg-green-600 text-white px-8 py-4 rounded-lg hover:bg-green-700 transition-colors duration-200 text-lg font-medium">Explore
                             Solutions</a>
                         <a href="#products"
-                            class="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-primary-600 transition-colors duration-200 text-lg font-medium">View
+                            class="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-blue-600 transition-colors duration-200 text-lg font-medium">View
                             Products</a>
                     </div>
                 </div>
 
                 <!-- Trust Indicators -->
-                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-80" data-aos="fade-up"
-                    data-aos-delay="600">
+                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-80">
                     <div class="text-center">
                         <div class="text-2xl font-bold text-white">200%</div>
                         <div class="text-blue-200 text-sm">Revenue Growth Target</div>
@@ -304,21 +195,20 @@
     <section id="about" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6" data-aos="fade-up">Leading Technology
-                    Innovation</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Leading Technology Innovation</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     ALNWOKS Solutions Limited is structured as a comprehensive technology solutions provider with
                     specialized divisions for government and commercial sectors, backed by innovative product offerings.
                 </p>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right">
+                <div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-6">Our Strategic Approach</h3>
                     <div class="space-y-6">
                         <div class="flex items-start space-x-4">
                             <div
-                                class="w-12 h-12 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -332,7 +222,7 @@
                         </div>
                         <div class="flex items-start space-x-4">
                             <div
-                                class="w-12 h-12 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -346,7 +236,7 @@
                         </div>
                         <div class="flex items-start space-x-4">
                             <div
-                                class="w-12 h-12 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
@@ -362,19 +252,19 @@
                     </div>
                 </div>
 
-                <div class="relative" data-aos="fade-left">
-                    <div class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8">
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl p-8">
                         <div class="grid grid-cols-2 gap-6">
                             <div class="text-center">
-                                <div class="text-3xl font-bold text-primary-600 mb-2">18</div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">18</div>
                                 <div class="text-gray-600 text-sm">Month Roadmap</div>
                             </div>
                             <div class="text-center">
-                                <div class="text-3xl font-bold text-secondary-600 mb-2">4</div>
+                                <div class="text-3xl font-bold text-green-600 mb-2">4</div>
                                 <div class="text-gray-600 text-sm">Product Lines</div>
                             </div>
                             <div class="text-center">
-                                <div class="text-3xl font-bold text-accent-600 mb-2">2</div>
+                                <div class="text-3xl font-bold text-orange-600 mb-2">2</div>
                                 <div class="text-gray-600 text-sm">Market Divisions</div>
                             </div>
                             <div class="text-center">
@@ -392,9 +282,8 @@
     <section id="solutions" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6" data-aos="fade-up">Comprehensive Solutions
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Comprehensive Solutions</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Specialized divisions delivering targeted solutions for government and commercial sectors with deep
                     industry expertise.
                 </p>
@@ -402,12 +291,12 @@
 
             <div class="grid lg:grid-cols-2 gap-8">
                 <!-- Government Solutions -->
-                <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-                    data-aos="fade-up">
+                <div
+                    class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <div class="p-8">
                         <div class="flex items-center mb-6">
                             <div
-                                class="w-12 h-12 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center mr-4">
+                                class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-4">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
@@ -416,7 +305,7 @@
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-gray-900 mb-2">Government Solutions</h3>
-                                <p class="text-primary-600 font-medium">Secure. Compliant. Innovative.</p>
+                                <p class="text-blue-600 font-medium">Secure. Compliant. Innovative.</p>
                             </div>
                         </div>
                         <p class="text-gray-600 mb-6">
@@ -425,7 +314,7 @@
                         </p>
                         <ul class="space-y-3 mb-6">
                             <li class="flex items-center text-gray-600">
-                                <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
@@ -433,7 +322,7 @@
                                 Security clearance management
                             </li>
                             <li class="flex items-center text-gray-600">
-                                <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
@@ -441,7 +330,7 @@
                                 Regulatory compliance automation
                             </li>
                             <li class="flex items-center text-gray-600">
-                                <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
@@ -450,18 +339,18 @@
                             </li>
                         </ul>
                         <a href="#contact"
-                            class="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors duration-200 inline-block">Learn
+                            class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 inline-block">Learn
                             More</a>
                     </div>
                 </div>
 
                 <!-- Commercial Solutions -->
-                <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-                    data-aos="fade-up" data-aos-delay="200">
+                <div
+                    class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <div class="p-8">
                         <div class="flex items-center mb-6">
                             <div
-                                class="w-12 h-12 bg-secondary-100 text-secondary-600 rounded-lg flex items-center justify-center mr-4">
+                                class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mr-4">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
@@ -469,7 +358,7 @@
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-gray-900 mb-2">Commercial Solutions</h3>
-                                <p class="text-secondary-600 font-medium">Accelerating Business Success</p>
+                                <p class="text-green-600 font-medium">Accelerating Business Success</p>
                             </div>
                         </div>
                         <p class="text-gray-600 mb-6">
@@ -478,7 +367,7 @@
                         </p>
                         <ul class="space-y-3 mb-6">
                             <li class="flex items-center text-gray-600">
-                                <svg class="w-5 h-5 text-secondary-600 mr-3" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
@@ -486,7 +375,7 @@
                                 Enterprise software development
                             </li>
                             <li class="flex items-center text-gray-600">
-                                <svg class="w-5 h-5 text-secondary-600 mr-3" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
@@ -494,7 +383,7 @@
                                 Digital transformation consulting
                             </li>
                             <li class="flex items-center text-gray-600">
-                                <svg class="w-5 h-5 text-secondary-600 mr-3" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
@@ -503,7 +392,7 @@
                             </li>
                         </ul>
                         <a href="#contact"
-                            class="bg-secondary-600 text-white px-6 py-3 rounded-lg hover:bg-secondary-700 transition-colors duration-200 inline-block">Learn
+                            class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 inline-block">Learn
                             More</a>
                     </div>
                 </div>
@@ -512,36 +401,35 @@
     </section>
 
     <!-- Products Section -->
-    <section id="products" class="py-20 bg-white">
+    <section id="products" class="py-20 bg-white" x-data="productShowcase()">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6" data-aos="fade-up">Innovative Product
-                    Portfolio</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Innovative Product Portfolio</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Cutting-edge products that solve real business challenges across industries with measurable results
                     and seamless integration.
                 </p>
             </div>
 
             <!-- Product Navigation -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="400">
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
                 <button @click="setActiveProduct('eazybdc')"
-                    :class="activeProduct === 'eazybdc' ? 'bg-primary-600 text-white' : 'border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white'"
+                    :class="activeProduct === 'eazybdc' ? 'bg-blue-600 text-white' : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'"
                     class="px-6 py-3 rounded-lg font-medium transition-colors duration-200">eazyBDC</button>
                 <button @click="setActiveProduct('flowai')"
-                    :class="activeProduct === 'flowai' ? 'bg-primary-600 text-white' : 'border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white'"
+                    :class="activeProduct === 'flowai' ? 'bg-blue-600 text-white' : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'"
                     class="px-6 py-3 rounded-lg font-medium transition-colors duration-200">Flow AI</button>
                 <button @click="setActiveProduct('ottomate')"
-                    :class="activeProduct === 'ottomate' ? 'bg-primary-600 text-white' : 'border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white'"
+                    :class="activeProduct === 'ottomate' ? 'bg-blue-600 text-white' : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'"
                     class="px-6 py-3 rounded-lg font-medium transition-colors duration-200">Ottomate</button>
                 <button @click="setActiveProduct('datatloop')"
-                    :class="activeProduct === 'datatloop' ? 'bg-primary-600 text-white' : 'border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white'"
+                    :class="activeProduct === 'datatloop' ? 'bg-blue-600 text-white' : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'"
                     class="px-6 py-3 rounded-lg font-medium transition-colors duration-200">Datatloop</button>
             </div>
 
             <!-- Product Showcase -->
             <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up">
+                <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
                     <div class="p-8">
                         <div class="grid lg:grid-cols-2 gap-8 items-center">
                             <div>
@@ -557,7 +445,7 @@
                                     <ul class="space-y-2">
                                         <template x-for="feature in getActiveProduct().features" :key="feature">
                                             <li class="flex items-center text-gray-600">
-                                                <svg class="w-5 h-5 text-primary-600 mr-3" fill="none"
+                                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="none"
                                                     stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -570,10 +458,10 @@
 
                                 <div class="flex gap-4">
                                     <a :href="getActiveProduct().link" target="_blank"
-                                        class="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors duration-200">Visit
+                                        class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200">Visit
                                         Product Site</a>
                                     <a href="#contact"
-                                        class="border-2 border-primary-600 text-primary-600 px-6 py-3 rounded-lg hover:bg-primary-600 hover:text-white transition-colors duration-200">Request
+                                        class="border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-600 hover:text-white transition-colors duration-200">Request
                                         Demo</a>
                                 </div>
                             </div>
@@ -616,7 +504,7 @@
                     class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <div class="p-6">
                         <div
-                            class="w-12 h-12 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center mb-4">
+                            class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
@@ -627,7 +515,7 @@
                         <p class="text-gray-600 mb-4">Modernized legacy systems for a federal agency, improving
                             efficiency
                             by 40%.</p>
-                        <div class="flex items-center text-primary-600 font-medium">
+                        <div class="flex items-center text-blue-600 font-medium">
                             <span>Read Case Study</span>
                             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
@@ -642,7 +530,7 @@
                     class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <div class="p-6">
                         <div
-                            class="w-12 h-12 bg-secondary-100 text-secondary-600 rounded-lg flex items-center justify-center mb-4">
+                            class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
@@ -652,7 +540,7 @@
                         <p class="text-gray-600 mb-4">Implemented workflow automation for a Fortune 500 company,
                             reducing
                             processing time by 60%.</p>
-                        <div class="flex items-center text-secondary-600 font-medium">
+                        <div class="flex items-center text-green-600 font-medium">
                             <span>Read Case Study</span>
                             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
@@ -667,7 +555,7 @@
                     class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <div class="p-6">
                         <div
-                            class="w-12 h-12 bg-accent-100 text-accent-600 rounded-lg flex items-center justify-center mb-4">
+                            class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-4">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
@@ -677,7 +565,7 @@
                         <h3 class="text-xl font-bold text-gray-900 mb-2">Data Analytics Platform</h3>
                         <p class="text-gray-600 mb-4">Built a custom analytics solution for a healthcare provider,
                             enabling data-driven decision making.</p>
-                        <div class="flex items-center text-accent-600 font-medium">
+                        <div class="flex items-center text-orange-600 font-medium">
                             <span>Read Case Study</span>
                             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
@@ -710,48 +598,146 @@
                     <div class="space-y-4 mb-8">
                         <div class="flex items-start">
                             <div class="flex-shrink-0 mt-1">
-                                <svg class="w-5 h-5 text-secondary-600" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
+                                        d="M5 13l4 4L19 7">
+                                    </path>
                                 </svg>
                             </div>
                             <p class="ml-3 text-gray-600">Joint go-to-market strategies</p>
                         </div>
                         <div class="flex items-start">
                             <div class="flex-shrink-0 mt-1">
-                                <svg class="w-5 h-5 text-secondary-600" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
+                                        d="M5 13l4 4L19 7">
+                                    </path>
                                 </svg>
                             </div>
                             <p class="ml-3 text-gray-600">Technology integration and co-development</p>
                         </div>
                         <div class="flex items-start">
                             <div class="flex-shrink-0 mt-1">
-                                <svg class="w-5 h-5 text-secondary-600" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
+                                        d="M5 13l4 4L19 7">
+                                    </path>
                                 </svg>
                             </div>
                             <p class="ml-3 text-gray-600">Shared resources and expertise</p>
                         </div>
                         <div class="flex items-start">
                             <div class="flex-shrink-0 mt-1">
-                                <svg class="w-5 h-5 text-secondary-600" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
+                                        d="M5 13l4 4L19 7">
+                                    </path>
                                 </svg>
                             </div>
                             <p class="ml-3 text-gray-600">Revenue sharing opportunities</p>
                         </div>
                     </div>
                     <a href="#contact"
-                        class="inline-block bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors duration-200">Become
+                        class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200">Become
                         a Partner</a>
                 </div>
                 <div class="bg-gray-50 rounded-2xl p-8">
-                    <h4 class="text-xl font-bold text-gray-900 mb-4">Partners
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">Partnership Benefits</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div
+                                    class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                                    1</div>
+                            </div>
+                            <div class="ml-4">
+                                <h5 class="font-semibold text-gray-900">Market Expansion</h5>
+                                <p class="text-gray-600">Access new markets and customer segments through our
+                                    established
+                                    network</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div
+                                    class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                                    2</div>
+                            </div>
+                            <div class="ml-4">
+                                <h5 class="font-semibold text-gray-900">Technology Enhancement</h5>
+                                <p class="text-gray-600">Leverage our cutting-edge technology platforms and expertise
+                                </p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div
+                                    class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                                    3</div>
+                            </div>
+                            <div class="ml-4">
+                                <h5 class="font-semibold text-gray-900">Operational Efficiency</h5>
+                                <p class="text-gray-600">Reduce costs and improve delivery through shared resources</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Get In Touch</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Ready to transform your business with our technology solutions? Contact us today to start the
+                    conversation.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold text-gray-900">Phone</h4>
+                                <p class="text-gray-600">+234-XXX-XXX-XXXX</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold text-gray-900">Email</h4>
+                                <p class="text-gray-600">info@alnwoks.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
