@@ -8,7 +8,7 @@ module.exports = {
     main: path.resolve(__dirname, './src/js/main.js'),
   },
   output: {
-    filename: isProd ? 'js/bundle.[contenthash].js' : 'js/bundle.js',
+    filename: isProd ? 'js/[name].[contenthash].js' : 'js/[name].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     clean: true,
@@ -43,6 +43,7 @@ module.exports = {
       filename: path.resolve(__dirname, 'dist/index.html'),
       inject: 'body',
       scriptLoading: 'defer',
+      chunks: ['main', 'vendor', 'runtime'],
       minify: isProd
         ? {
             removeComments: true,
@@ -65,13 +66,15 @@ module.exports = {
       cacheGroups: {
         vendor: {
           test: /[\\/](node_modules)[\\/]/,
-          name: 'js/vendor',
+          name: 'vendor',
           filename: isProd ? 'js/vendor.[contenthash].js' : 'js/vendor.js',
           enforce: true,
         },
       },
     },
-    runtimeChunk: 'single',
+    runtimeChunk: {
+      name: 'runtime',
+    },
   },
   resolve: {
     extensions: ['.js', '.json'],

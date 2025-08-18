@@ -67,7 +67,19 @@ deploy_frontend() {
     
     cd "$PROJECT_ROOT"
     
-    # Copy frontend files and Docker Compose
+    # Ensure frontend is built so dist/ is included in the package
+    if [ -d "frontend" ]; then
+        echo "Building frontend assets before packaging..."
+        pushd frontend >/dev/null
+        # Install dependencies if node_modules missing
+        if [ ! -d "node_modules" ]; then
+            npm ci --include=dev
+        fi
+        npm run build
+        popd >/dev/null
+    fi
+
+    # Copy frontend files and Docker Compose (dist will be included)
     cp -r frontend/ "$temp_dir/"
     cp docker-compose.frontend.yml "$temp_dir/"
     

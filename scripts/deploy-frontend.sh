@@ -246,8 +246,12 @@ run_health_checks() {
 # Deploy to remote server
 deploy_to_remote() {
     echo -e "${BLUE}Deploying to remote server...${NC}"
-    
-    # Use existing deployment script
+
+    # Build frontend locally to ensure dist/ is present and up-to-date
+    print_info "Building frontend locally before packaging..."
+    build_frontend
+
+    # Use existing deployment script (it will package frontend/, which now includes dist/)
     if [ -f "$SCRIPT_DIR/deploy-frontend-simple.sh" ]; then
         "$SCRIPT_DIR/deploy-frontend-simple.sh" deploy
     else

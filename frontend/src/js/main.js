@@ -9,14 +9,12 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 // Import Swiper for carousels
-import { Autoplay, EffectFade, Navigation, Pagination, Swiper } from 'swiper';
+import Swiper from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// Configure Swiper modules
-Swiper.use([Navigation, Pagination, Autoplay, EffectFade]);
 
 // Alpine.js Data Components
 document.addEventListener('alpine:init', () => {
@@ -285,178 +283,6 @@ document.addEventListener('alpine:init', () => {
       return this.products[this.activeProduct];
     }
   }));
-// Register Alpine.js components for use in HTML
-document.addEventListener('alpine:init', () => {
-  Alpine.data('navigation', () => ({
-    isOpen: false,
-    activeSection: 'home',
-    
-    init() {
-      this.updateActiveSection();
-      window.addEventListener('scroll', () => this.updateActiveSection());
-    },
-    
-    toggleMenu() {
-      this.isOpen = !this.isOpen;
-    },
-    
-    closeMenu() {
-      this.isOpen = false;
-    },
-    
-    updateActiveSection() {
-      const sections = document.querySelectorAll('section[id]');
-      const scrollPos = window.scrollY + 100;
-      
-      sections.forEach(section => {
-        const top = section.offsetTop;
-        const bottom = top + section.offsetHeight;
-        
-        if (scrollPos >= top && scrollPos <= bottom) {
-          this.activeSection = section.id;
-        }
-      });
-    }
-  }));
-
-  Alpine.data('productShowcase', () => ({
-    activeProduct: 'eazybdc',
-    products: {
-      eazybdc: {
-        name: 'eazyBDC',
-        tagline: 'Bureau de Change Management',
-        description: 'Streamline your Bureau de Change operations with automated compliance, real-time reporting, and intelligent workflow management.',
-        features: ['Automated Compliance', 'Real-time Reporting', 'Customer Management', 'Rate Management'],
-        link: 'https://eazybdc.com',
-        color: 'from-blue-600 to-yellow-500'
-      },
-      flowai: {
-        name: 'Flow AI',
-        tagline: 'Enterprise Conversational AI',
-        description: 'Build intelligent chatbots with advanced RAG infrastructure, seamless integrations, and enterprise-grade security.',
-        features: ['RAG Infrastructure', 'Developer APIs', 'Enterprise Security', 'Custom Integration'],
-        link: 'https://flowai.com',
-        color: 'from-blue-600 to-purple-600'
-      },
-      ottomate: {
-        name: 'Ottomate',
-        tagline: 'No-Code Workflow Automation',
-        description: 'Empower your team to create powerful workflow automations without coding, driving efficiency across your organization.',
-        features: ['Visual Designer', 'Pre-built Templates', 'Team Collaboration', 'Analytics Dashboard'],
-        link: 'https://ottomate.com',
-        color: 'from-green-600 to-blue-600'
-      },
-      datatloop: {
-        name: 'Datatloop',
-        tagline: 'Data Orchestration Platform',
-        description: 'Revolutionary data synthesis platform that transforms how enterprises discover insights from complex data ecosystems.',
-        features: ['Data Synthesis', 'Intelligent Orchestration', 'Enterprise Scale', 'Advanced Analytics'],
-        link: 'https://datatloop.com',
-        color: 'from-orange-600 to-blue-600'
-      }
-    },
-    
-    setActiveProduct(productId) {
-      this.activeProduct = productId;
-    },
-    
-    getActiveProduct() {
-      return this.products[this.activeProduct];
-    }
-  }));
-
-  Alpine.data('contactForm', () => ({
-    formData: {
-      name: '',
-      email: '',
-      company: '',
-      phone: '',
-      subject: '',
-      message: '',
-      interest: '',
-      budget: ''
-    },
-    isSubmitting: false,
-    isSubmitted: false,
-    errors: {},
-    
-    async submitForm() {
-      this.isSubmitting = true;
-      this.errors = {};
-      
-      // Validate form
-      if (!this.validateForm()) {
-        this.isSubmitting = false;
-        return;
-      }
-      
-      try {
-        // Simulate API call (replace with actual endpoint)
-        await this.sendFormData();
-        this.isSubmitted = true;
-        this.resetForm();
-      } catch (error) {
-        console.error('Form submission error:', error);
-        this.errors.general = 'There was an error submitting your form. Please try again.';
-      } finally {
-        this.isSubmitting = false;
-      }
-    },
-    
-    validateForm() {
-      let isValid = true;
-      
-      if (!this.formData.name.trim()) {
-        this.errors.name = 'Name is required';
-        isValid = false;
-      }
-      
-      if (!this.formData.email.trim()) {
-        this.errors.email = 'Email is required';
-        isValid = false;
-      } else if (!this.isValidEmail(this.formData.email)) {
-        this.errors.email = 'Please enter a valid email address';
-        isValid = false;
-      }
-      
-      if (!this.formData.message.trim()) {
-        this.errors.message = 'Message is required';
-        isValid = false;
-      }
-      
-      return isValid;
-    },
-    
-    isValidEmail(email) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    },
-    
-    async sendFormData() {
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Here you would typically send to your backend
-      console.log('Form data:', this.formData);
-      
-      // For demo purposes, we'll just log and resolve
-      return Promise.resolve();
-    },
-    
-    resetForm() {
-      this.formData = {
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        subject: '',
-        message: '',
-        interest: '',
-        budget: ''
-      };
-    }
-  }));
-});
 });
 
 // Initialize Alpine.js
@@ -499,6 +325,7 @@ class WebsiteUtils {
           imageObserver.unobserve(img);
         }
       });
+    });
     
     images.forEach(img => imageObserver.observe(img));
   }
@@ -506,6 +333,7 @@ class WebsiteUtils {
   // Initialize testimonial carousel
   static initTestimonialCarousel() {
     const testimonialSwiper = new Swiper('.testimonial-carousel', {
+      modules: [Navigation, Pagination, Autoplay],
       slidesPerView: 1,
       spaceBetween: 30,
       autoplay: {
@@ -534,6 +362,7 @@ class WebsiteUtils {
   // Initialize hero carousel
   static initHeroCarousel() {
     const heroSwiper = new Swiper('.hero-carousel', {
+      modules: [Navigation, Pagination, Autoplay, EffectFade],
       slidesPerView: 1,
       effect: 'fade',
       autoplay: {
