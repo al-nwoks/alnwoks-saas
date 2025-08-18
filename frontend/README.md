@@ -131,6 +131,30 @@ docker-compose -f ../docker-compose.frontend.yml up -d
 docker-compose -f ../docker-compose.frontend.yml down
 ```
 
+### Docker Build Process
+
+The Docker build process has been optimized to ensure all necessary dependencies are installed:
+- Uses `npm ci --include=dev` to install all dependencies including devDependencies needed for building
+- Sets `NODE_ENV=production` after the build process to ensure proper optimization
+- Uses multi-stage build to minimize the final image size
+
+### Tailwind CSS Plugins
+
+The project uses the following Tailwind CSS plugins:
+- `@tailwindcss/forms` - For better form styling
+- `@tailwindcss/typography` - For beautiful typography
+- `@tailwindcss/aspect-ratio` - For maintaining aspect ratios
+
+### Webpack Configuration
+
+The webpack configuration has been optimized to prevent chunk conflicts:
+- Fixed `splitChunks` and `runtimeChunk` configuration to use unique names
+- Removed duplicate code in main.js to prevent bundling issues
+- Updated output filename to use [name] placeholder to prevent conflicts
+- Configured HtmlWebpackPlugin to inject specific chunks
+- Fixed Swiper import syntax for version 11.x
+- Added missing style-loader, css-loader, and web-vitals dependencies
+
 ## 📱 Responsive Design
 
 The website is fully responsive with breakpoints:
