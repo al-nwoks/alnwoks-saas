@@ -14,7 +14,7 @@ on:
       REMOTE_PATH:
         description: 'Remote path to deploy into (will be created)'
         required: false
-        default: '/opt/bdc-saas'
+        default: '/opt/alnwoks-saas'
       TARGET_SUBDIR:
         description: 'Subdirectory name under REMOTE_PATH to copy files to (release folder)'
         required: false
@@ -22,7 +22,7 @@ on:
       COMPOSE_FILE:
         description: 'Compose file to use on remote (e.g. docker-compose.prod.yml, docker-compose.yml)'
         required: false
-        default: 'docker-compose.prod.yml'
+        default: 'docker-compose.yml'
       SERVICES:
         description: 'Which services to (re)deploy: frontend, backend, or all'
         required: false
