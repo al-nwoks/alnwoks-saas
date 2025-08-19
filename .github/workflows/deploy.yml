@@ -15,10 +15,6 @@ on:
         description: 'Remote path to deploy into (will be created)'
         required: false
         default: '/opt/alnwoks-saas'
-      TARGET_SUBDIR:
-        description: 'Subdirectory name under REMOTE_PATH to copy files to (release folder)'
-        required: false
-        default: 'current'
       COMPOSE_FILE:
         description: 'Compose file to use on remote (e.g. docker-compose.prod.yml, docker-compose.yml)'
         required: false
@@ -53,7 +49,6 @@ jobs:
           echo "REMOTE_HOST=$REMOTE_HOST" >> "$GITHUB_OUTPUT"
           echo "REMOTE_USER=${{ github.event.inputs.REMOTE_USER || 'root' }}" >> "$GITHUB_OUTPUT"
           echo "REMOTE_PATH=${{ github.event.inputs.REMOTE_PATH || '/opt/bdc-saas' }}" >> "$GITHUB_OUTPUT"
-          echo "TARGET_SUBDIR=${{ github.event.inputs.TARGET_SUBDIR || 'current' }}" >> "$GITHUB_OUTPUT"
           echo "COMPOSE_FILE=${{ github.event.inputs.COMPOSE_FILE || 'docker-compose.prod.yml' }}" >> "$GITHUB_OUTPUT"
           echo "SERVICES=${{ github.event.inputs.SERVICES || 'all' }}" >> "$GITHUB_OUTPUT"
           echo "NO_CACHE=${{ github.event.inputs.NO_CACHE || 'false' }}" >> "$GITHUB_OUTPUT"
@@ -103,16 +98,15 @@ jobs:
           printf '%s\n' '#!/usr/bin/env bash' >> ./remote-deploy.sh
           printf '%s\n' 'set -euo pipefail' >> ./remote-deploy.sh
           printf '%s\n' 'REMOTE_PATH="${REMOTE_PATH}"' >> ./remote-deploy.sh
-          printf '%s\n' 'TARGET_SUBDIR="${TARGET_SUBDIR}"' >> ./remote-deploy.sh
           printf '%s\n' 'COMPOSE_FILE="${COMPOSE_FILE:-docker-compose.prod.yml}"' >> ./remote-deploy.sh
           printf '%s\n' 'SERVICES="${SERVICES:-all}"' >> ./remote-deploy.sh
           printf '%s\n' 'NO_CACHE="${NO_CACHE:-false}"' >> ./remote-deploy.sh
           printf '%s\n' '# Prepare target' >> ./remote-deploy.sh
-          printf '%s\n' 'mkdir -p "${REMOTE_PATH}/${TARGET_SUBDIR}"' >> ./remote-deploy.sh
+          printf '%s\n' 'mkdir -p "${REMOTE_PATH}"' >> ./remote-deploy.sh
           printf '%s\n' 'cd /tmp' >> ./remote-deploy.sh
           printf '%s\n' 'TMPDIR="$(mktemp -d)"' >> ./remote-deploy.sh
           printf '%s\n' 'tar -xzf deploy-package.tar.gz -C "$TMPDIR"' >> ./remote-deploy.sh
-          printf '%s\n' 'rsync -a --delete "$TMPDIR/" "${REMOTE_PATH}/${TARGET_SUBDIR}/"' >> ./remote-deploy.sh
+          printf '%s\n' 'rsync -a --delete "$TMPDIR/" "${REMOTE_PATH}/"' >> ./remote-deploy.sh
           printf '%s\n' 'rm -rf "$TMPDIR"' >> ./remote-deploy.sh
           printf '%s\n' '# Ensure docker is present' >> ./remote-deploy.sh
           printf '%s\n' 'if ! command -v docker >/dev/null 2>&1; then' >> ./remote-deploy.sh
@@ -130,7 +124,7 @@ jobs:
           printf '%s\n' '  chmod +x /usr/local/bin/docker-compose' >> ./remote-deploy.sh
           printf '%s\n' '  COMPOSE="docker-compose"' >> ./remote-deploy.sh
           printf '%s\n' 'fi' >> ./remote-deploy.sh
-          printf '%s\n' 'cd "${REMOTE_PATH}/${TARGET_SUBDIR}"' >> ./remote-deploy.sh
+          printf '%s\n' 'cd "${REMOTE_PATH}"' >> ./remote-deploy.sh
           printf '%s\n' '# Determine services list (empty means all services)' >> ./remote-deploy.sh
           printf '%s\n' 'if [ "$SERVICES" = "all" ] || [ -z "$SERVICES" ]; then' >> ./remote-deploy.sh
           printf '%s\n' '  SERVICES_ARG=""' >> ./remote-deploy.sh
@@ -164,13 +158,12 @@ jobs:
           REMOTE_HOST="${{ steps.vars.outputs.REMOTE_HOST }}"
           REMOTE_USER="${{ steps.vars.outputs.REMOTE_USER }}"
           REMOTE_PATH="${{ steps.vars.outputs.REMOTE_PATH }}"
-          TARGET_SUBDIR="${{ steps.vars.outputs.TARGET_SUBDIR }}"
           COMPOSE_FILE="${{ steps.vars.outputs.COMPOSE_FILE }}"
           SERVICES="${{ steps.vars.outputs.SERVICES }}"
           NO_CACHE="${{ steps.vars.outputs.NO_CACHE }}"
           # Export variables into the remote command so the remote script can read them
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "${REMOTE_USER}@${REMOTE_HOST}" \
-            "REMOTE_PATH='${REMOTE_PATH}' TARGET_SUBDIR='${TARGET_SUBDIR}' COMPOSE_FILE='${COMPOSE_FILE}' SERVICES='${SERVICES}' NO_CACHE='${NO_CACHE}' bash /tmp/remote-deploy.sh"
+            "REMOTE_PATH='${REMOTE_PATH}' COMPOSE_FILE='${COMPOSE_FILE}' SERVICES='${SERVICES}' NO_CACHE='${NO_CACHE}' bash /tmp/remote-deploy.sh"
         shell: bash
 
       - name: Cleanup local artifact
