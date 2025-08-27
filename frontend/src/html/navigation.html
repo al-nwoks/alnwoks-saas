@@ -1,0 +1,66 @@
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 md:h-20">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="#home" class="flex items-center space-x-3">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">A</span>
+                    </div>
+                    <div class="hidden sm:block">
+                        <div class="text-xl font-bold text-gray-900">ALNWOKS</div>
+                        <div class="text-xs text-gray-600">Solutions Limited</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="#about"
+                    class="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200">About</a>
+                <a href="#solutions"
+                    class="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200">Solutions</a>
+                <a href="#products"
+                    class="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200">Products</a>
+                <a href="#case-studies"
+                    class="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200">Case
+                    Studies</a>
+                <a href="#partnerships"
+                    class="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200">Partnerships</a>
+                <a href="#contact"
+                    class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors duration-200">Contact
+                    Us</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button @click="toggleMenu()" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path x-show="!isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path x-show="isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div x-show="isMenuOpen" x-transition class="lg:hidden py-4 border-t border-gray-100">
+            <div class="flex flex-col space-y-4">
+                <a href="#about" @click="closeMenu()" class="text-gray-600 hover:text-primary-600 font-medium">About</a>
+                <a href="#solutions" @click="closeMenu()"
+                    class="text-gray-600 hover:text-primary-600 font-medium">Solutions</a>
+                <a href="#products" @click="closeMenu()"
+                    class="text-gray-600 hover:text-primary-600 font-medium">Products</a>
+                <a href="#case-studies" @click="closeMenu()"
+                    class="text-gray-600 hover:text-primary-600 font-medium">Case Studies</a>
+                <a href="#partnerships" @click="closeMenu()"
+                    class="text-gray-600 hover:text-primary-600 font-medium">Partnerships</a>
+                <a href="#contact" @click="closeMenu()"
+                    class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors duration-200 text-center">Contact
+                    Us</a>
+            </div>
+        </div>
+    </div>
+</nav>

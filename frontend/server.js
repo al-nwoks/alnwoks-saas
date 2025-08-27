@@ -3,8 +3,8 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static files from the root directory
-app.use(express.static(path.join(__dirname)));
+// Serve static files from the dist directory
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -13,7 +13,7 @@ app.get('/health', (req, res) => {
 
 // Serve index.html for all routes (SPA support)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 // Start server
