@@ -24,7 +24,11 @@ services:
       start_period: 40s
     networks:
       - alnwoks-network
+      - proxy
 
 networks:
   alnwoks-network:
     driver: bridge
+  proxy:
+    name: proxy
+    external: true
