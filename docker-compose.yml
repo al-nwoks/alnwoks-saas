@@ -11,7 +11,7 @@ services:
       - "traefik.http.routers.frontend.rule=Host(`www.alnwoks.com`)" # Replace with your subdomain
       - "traefik.http.routers.frontend.entrypoints=websecure"
       - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.frontend.service=alnwoks-frontend"
+      - "traefik.http.routers.frontend.service=frontend"
       - "traefik.http.services.frontend.loadbalancer.server.port=3000"
     expose:
       - "3000"
