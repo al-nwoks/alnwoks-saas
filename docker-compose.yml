@@ -6,6 +6,11 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: alnwoks-frontend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`www.alnwoks.com`)" # Replace with your subdomain
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
     ports:
       - "3001:3000"
     restart: unless-stopped
