@@ -1,23 +1,35 @@
 version: '3.8'
 
 services:
-  frontend:
+  website:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: alnwoks-frontend
-    ports:
-      - "3001:3000"
+    container_name: website
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.website.rule=Host(`alnwoks.com`) || Host(`www.alnwoks.com`)" # Replace with your subdomain
+      - "traefik.http.routers.website.entrypoints=websecure"
+      - "traefik.http.routers.website.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.website.service=website"
+      - "traefik.http.services.website.loadbalancer.server.port=3000"
+    expose:
+      - "3000"
     restart: unless-stopped
     healthcheck:
-      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/" ]
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://website:3000/" ]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
     networks:
       - alnwoks-network
+      - proxy
 
 networks:
   alnwoks-network:
     driver: bridge
+  proxy:
+    name: proxy
+    external: true
