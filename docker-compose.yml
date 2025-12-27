@@ -9,7 +9,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
-      - "traefik.http.routers.website.rule=Host(`www.alnwoks.com`)" # Replace with your subdomain
+      - "traefik.http.routers.website.rule=Host(`alnwoks.com`) || Host(`www.alnwoks.com`)" # Replace with your subdomain
       - "traefik.http.routers.website.entrypoints=websecure"
       - "traefik.http.routers.website.tls.certresolver=letsencrypt"
       - "traefik.http.routers.website.service=website"
